@@ -1,0 +1,17 @@
+---
+title: "Homework 2"
+output:   
+  github_document
+---
+
+## Load packages
+```{r, message = FALSE}
+library(tidyverse)
+```
+
+
+### Import NYC Transit data
+```{r}
+
+```
+
