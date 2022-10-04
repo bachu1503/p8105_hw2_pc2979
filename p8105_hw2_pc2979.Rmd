@@ -86,8 +86,24 @@ transit_df %>%
 
 ### Import Mr. Trash Wheel dataset and perform initial cleaning
 ```{r}
-trash_df <- read_excel('data/Trash-Wheel-Collection-Totals-7-2020-2.xlsx') %>%
+mr_trash_df <- read_excel('data/Trash-Wheel-Collection-Totals-7-2020-2.xlsx',
+                       sheet = "Mr. Trash Wheel",
+                       range = "A2:N533",
+                       col_names = TRUE) %>%
   janitor::clean_names() %>%
-  select(line:entry, vending, ada) %>%
-  mutate(entry = ifelse(entry == "YES", TRUE, FALSE))
+  drop_na(dumpster) %>%
+  mutate(sports_balls = round(sports_balls),
+         sports_balls = as.integer(sports_balls))
+
+prof_trash_df <- read_excel('data/Trash-Wheel-Collection-Totals-7-2020-2.xlsx',
+                       sheet = "Professor Trash Wheel",
+                       range = "A2:N115",
+                       col_names = TRUE) %>%
+  janitor::clean_names() %>%
+  drop_na(dumpster) %>%
+  mutate(sports_balls = round(sports_balls),
+         sports_balls = as.integer(sports_balls))  
+
+trash_df <- mr_trash_df %>% left_join(prof_trash_df, by = "")
+
 ```
