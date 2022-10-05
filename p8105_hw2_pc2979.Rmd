@@ -95,8 +95,7 @@ mr_trash_df <- read_excel('data/Trash Wheel Collection Data.xlsx',
   drop_na(dumpster) %>%
   mutate(sports_balls = as.integer(round(sports_balls)),
          dataset_name = "Mr. Trash Wheel",
-         date = as.character(date),
-         date = str_replace(date, "1900-01-20", "2020-01-20"),
+         date = str_replace(as.character(date), "1900-01-20", "2020-01-20"),
          date = as.POSIXct(date))
 
 prof_trash_df <- read_excel('data/Trash Wheel Collection Data.xlsx',
