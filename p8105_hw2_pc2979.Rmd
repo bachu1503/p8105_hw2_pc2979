@@ -161,10 +161,10 @@ ue <- read_csv('data/unemployment.csv',
 ### Join datasets (merge `snp` with `pols`, then merging `ue` with result)
 ```{r}
 snp_pols <- pols %>% 
-  left_join(snp, by = c("year", "month"))
+  full_join(snp, by = c("year", "month"))
 
 final_df <- snp_pols %>%
-  left_join(ue, by = c("year", "month"))
+  full_join(ue, by = c("year", "month"))
 ```
 
 *`pols` contains data on political affiliation of the sitting president and the number of democratic/republican governor/senators/representatives on the by month and year. `snp` contains information the closing values of the  S&P index by date. `ue` includes unemployment data in percentage of unemployment by month and year.*
